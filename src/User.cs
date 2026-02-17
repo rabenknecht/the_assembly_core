@@ -2,16 +2,23 @@ namespace TheAssembly.Core;
 
 public class User
 {
-    public string Name => throw new NotImplementedException();
+    public string Name { get; private set; }
 
 
-    public static User FromEncodedString(string s)
+    private User(string name)
     {
-        throw new NotImplementedException();
+        Name = name;
+    }
+
+
+    public static User? FromEncodedString(string s)
+    {
+        if (!Util.IsNameLegal(s)) return null;
+        return new User(s);
     }
 
     public string ToEncodedString()
     {
-        throw new NotImplementedException();
+        return Name;
     }
 }
