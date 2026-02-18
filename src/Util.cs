@@ -1,6 +1,6 @@
 namespace TheAssembly.Core;
 
-public static class Util
+internal static class Util
 {
     public static bool IsNameLegal(string name) 
     {
