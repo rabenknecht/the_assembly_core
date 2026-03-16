@@ -1,3 +1,5 @@
+using System;
+
 public record class EntryRecord
 (
     string? question,
