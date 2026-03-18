@@ -75,6 +75,13 @@ public static class Util
     }
 
 
+    public static IEnumerable<(T value, int index)> WithIndex<T>(this IEnumerable<T> e)
+    {
+        var index = 0;
+        foreach (var value in e) yield return (value, index++);
+    }
+
+
     public static bool TryJsonDeserialize<T>(this string? toDeserialize, out T result)
         where T : class
     {
