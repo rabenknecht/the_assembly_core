@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
@@ -8,6 +9,8 @@ namespace TheAssembly.Core;
 
 public static class Util
 {
+    #region Arrays
+
     public static T GetOr<T>(this T[] array, int index, T or)
     {
         if (index < 0 || index >= array.Length) return or;
@@ -49,6 +52,10 @@ public static class Util
         return result;
     }
 
+    #endregion
+
+
+    #region Linq
 
     /// <summary>
     /// Ignores the last bytes if a's count is not divisible through 4
@@ -79,6 +86,17 @@ public static class Util
     {
         var index = 0;
         foreach (var value in e) yield return (value, index++);
+    }
+
+    #endregion
+
+
+    /// <summary>
+    /// Adds <paramref name="what"/> to the beginning of each new line on <paramref name="on"/>
+    /// </summary>
+    public static string AddOnLineStarts(this string on, string what)
+    {
+        return string.Join("\n", on.Split("\n").Select(s => what + s));
     }
 
 
