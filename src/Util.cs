@@ -52,6 +52,15 @@ public static class Util
         return result;
     }
 
+
+    public static T[] Concat<T>(this T[] left, T[] right)
+    {
+        var result = new T[left.Length + right.Length];
+        Array.Copy(left, result, left.Length);
+        Array.Copy(right, 0, result, left.Length, right.Length);
+        return result;
+    }
+
     #endregion
 
 
