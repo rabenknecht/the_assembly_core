@@ -47,6 +47,8 @@ public static class Util
 
     public static T[] SubArray<T>(this T[] array, int startInclusive, int length)
     {
+        if (length < 0) throw new ArgumentException("Length must not be lower than 0", nameof(length));
+        if (length == 0) return [];
         var result = new T[length];
         Array.Copy(array, startInclusive, result, 0, length);
         return result;
