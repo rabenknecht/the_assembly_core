@@ -4,6 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace TheAssembly.Core;
 
@@ -127,5 +129,14 @@ public static class Util
     {
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", $"{clientid}:{clientsecret}");
         return client;
+    }
+
+
+    /// <summary>
+    /// Executes <param name="toExecute"></param> after the <param name="waitFor"></param> Task finished execution.
+    /// </summary>
+    public static async Task ExecuteAfterCompletion<T>(this Task<T> waitFor, Action<T> toExecute)
+    {
+        toExecute(await waitFor);
     }
 }
